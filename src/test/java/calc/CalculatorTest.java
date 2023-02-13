@@ -1,12 +1,13 @@
 package calc;
 
-import calc.Calculator;
-import calc.Operation;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 
 public class CalculatorTest {
     private final Calculator calc = new Calculator();
+
     @Test
     public void calculateAddTest(){
         int first = 10;
@@ -46,4 +47,16 @@ public class CalculatorTest {
         calc.calculate(first,second,Operation.DIVIDE);
     }
 
+    @DisplayName(value = "Test with null Operation")
+    @Test(expected = NullPointerException.class)
+    public void testNullOperation(){
+        int first = 10;
+        int second = 20;
+        calc.calculate(first,second,null);
+    }
+    @Disabled("Not implemented yet")
+    @Test
+    public void calculateBigNumbersDisabledTest(){
+
+    }
 }
