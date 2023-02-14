@@ -6,7 +6,7 @@
 
     <groupId>org.example</groupId>
     <artifactId>Calc_Mvn_Tests</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.01-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>18</maven.compiler.source>
@@ -22,10 +22,11 @@
     </dependency>
     <dependency>
         <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter</artifactId>
-        <version>RELEASE</version>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>5.9.2</version>
         <scope>test</scope>
     </dependency>
+
 
 </dependencies>
 </project>
