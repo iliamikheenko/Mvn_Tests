@@ -3,11 +3,7 @@ package calc;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.rules.TestRule;
+import org.junit.jupiter.api.*;
 import org.junit.rules.Timeout;
 
 import java.util.concurrent.TimeUnit;
@@ -20,16 +16,25 @@ public class CalculatorTest {
     private final Calculator calc = new Calculator();
 
     @BeforeAll
-    static void init(){
-        System.out.println("Starting all tests...");
+    static void initBefore(){
+        System.out.println("Starting all tests...Logging.");
+    }
+    @AfterAll
+    static void initAfter(){
+        System.out.println("Starting all tests...Logging.");
     }
     @BeforeEach
-    void initBeforeEach(){
-        System.out.println("Starting next test...");
+    void startBeforeEach(){
+        System.out.println("Starting next test...Logging.");
     }
+    @AfterEach
+    void startAfterEach(){
+        System.out.println("Starting next test...Logging.");
+    }
+
     @Test
     @DisplayName("Adding")
-    public void calculateAddTest(){
+    void calculateAddTest(){
         int first = 10;
         int second = 20;
         int expected = 30;
