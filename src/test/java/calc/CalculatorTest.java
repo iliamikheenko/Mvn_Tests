@@ -1,15 +1,22 @@
 package calc;
 
+import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.rules.TestRule;
+import org.junit.rules.Timeout;
+
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.*;
 
 public class CalculatorTest {
-
+    @Rule
+    public Timeout globalTimeout = Timeout.seconds(10);
     private final Calculator calc = new Calculator();
 
     @BeforeAll
@@ -59,7 +66,6 @@ public class CalculatorTest {
         int second = 0;
         calc.calculate(first,second,Operation.DIVIDE);
     }
-
     @DisplayName(value = "Test with null Operation")
     @Test(expected = NullPointerException.class)
     public void testNullOperation(){
@@ -67,6 +73,7 @@ public class CalculatorTest {
         int second = 20;
         calc.calculate(first,second,null);
     }
+
     @Disabled("Not implemented yet")
     @Test
     public void calculateBigNumbersDisabledTest(){
@@ -81,6 +88,11 @@ public class CalculatorTest {
             int actual = calc.calculate(first[i],second[i],Operation.ADD );
             assertEquals(expected,actual);
         }
+    }
+    @Ignore
+    @Test
+    public void givenLongRunningTest_thenTestFails() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(20);
     }
 }
 
