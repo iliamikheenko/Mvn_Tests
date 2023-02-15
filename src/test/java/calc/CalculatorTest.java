@@ -34,7 +34,7 @@ public class CalculatorTest {
 
     @Test
     @DisplayName("Adding")
-    void calculateAddTest(){
+    public void calculateAddTest(){
         int first = 10;
         int second = 20;
         int expected = 30;
@@ -66,11 +66,22 @@ public class CalculatorTest {
         assertEquals(expected,actual);
     }
     @Test(expected = IllegalArgumentException.class)
-    public void calculateDivideByZero(){
+    public void calculateDivideByZeroJunit4(){
         int first = 10;
         int second = 0;
         calc.calculate(first,second,Operation.DIVIDE);
     }
+    @Test
+    public void calculateDivideByZeroJunit5(){
+        int first = 10;
+        int second = 0;
+        Exception exception = assertThrows(IllegalArgumentException.class,
+                () -> calc.calculate(first,second,Operation.DIVIDE));
+        String expectedMessage = "It's forbidden to divide by 0";
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
     @DisplayName(value = "Test with null Operation")
     @Test(expected = NullPointerException.class)
     public void testNullOperation(){
