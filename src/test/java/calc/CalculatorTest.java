@@ -15,24 +15,6 @@ public class CalculatorTest {
     @Rule
     public Timeout globalTimeout = Timeout.seconds(10);
     private final Calculator calc = new Calculator();
-
-    @BeforeAll
-    static void initBefore(){
-        System.out.println("Starting all tests...Logging.");
-    }
-    @AfterAll
-    static void initAfter(){
-        System.out.println("Starting all tests...Logging.");
-    }
-    @BeforeEach
-    void startBeforeEach(){
-        System.out.println("Starting next test...Logging.");
-    }
-    @AfterEach
-    void startAfterEach(){
-        System.out.println("Starting next test...Logging.");
-    }
-
     @Test
     @DisplayName("Adding")
     public void calculateAddTest(){
