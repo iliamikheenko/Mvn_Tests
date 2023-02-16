@@ -16,5 +16,5 @@ public class Book {
     private String isbn;
     private String publishingHouse;
     private int numOfPages;
-    private String authorName;
+    private Author author;
 }

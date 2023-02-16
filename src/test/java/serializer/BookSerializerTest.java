@@ -1,6 +1,7 @@
 package serializer;
 
-import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import model.Author;
 import model.Book;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,16 +13,18 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BookSerializerTest {
-    private final BookSerializer jsonSerializer = new BookSerializer(new YAMLMapper());
+    private final BookSerializer jsonSerializer = new BookSerializer(new JsonMapper());
     private Book fire;
+    private Author tolkien;
     private final String path = "src/test/java/tmp/";
-    private final String fileName = "fire.yaml";
+    private final String fileName = "fire.json";
     @BeforeEach
     public void init(){
+        tolkien = new Author("Tolkien",46);
         fire = Book.builder()
                 .isbn("9780544003415")
                 .numOfPages(577)
-                .authorName("J.R.R.")
+                .author(tolkien)
                 .publishingHouse("Mariner Books")
                 .build();
     }
@@ -50,7 +53,7 @@ class BookSerializerTest {
                 Book.builder()
                         .isbn("125436544045")
                         .numOfPages(224)
-                        .authorName("J.R.R.")
+                        .author(tolkien)
                         .publishingHouse("Mariner Books")
                         .build()
         );
@@ -59,7 +62,6 @@ class BookSerializerTest {
         List<Book> booksDeserialized = jsonSerializer.deserializeList(bookData);
         assertEquals(books,booksDeserialized);
         bookData.delete();
-
     }
 
     @Test
@@ -69,7 +71,7 @@ class BookSerializerTest {
                 Book.builder()
                         .isbn("125436544045")
                         .numOfPages(224)
-                        .authorName("J.R.R.")
+                        .author(tolkien)
                         .publishingHouse("Mariner Books")
                         .build()
         );
